@@ -1,0 +1,87 @@
+<%- include("../layouts/header") %>
+
+<body id="page-top">
+
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+
+        <%- include("../layouts/sidebar") %>
+
+
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+
+                <%- include("../layouts/navbar") %>
+
+                <div class="container-fluid">
+                    <h1>កាត់ស្តុក មុខទំនេញ</h1>
+                    <br>
+                    <a href="/products" class="btn btn-sm btn-primary"> <i class="fas fa-arrow-left"></i> Back to All
+                        Products</a>
+                    <br><br>
+
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">List all Available Products Stock Quantity</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th>No</th>
+                                            <th>Name</th>
+                                            <th>Code</th>
+                                            <th>Import Price</span></th>
+                                            <th>Import Qty</th>
+                                            <th>Stock </th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <% let n = 1 %>
+                                        <% products.forEach(pro => { %>
+                                        <% if (pro.stock_qty != 0) { %>
+                                        <tr>
+                                            <td class="text-center"><%= n %></td>
+                                            <td><a href="/view-product/<%= pro._id %> "><%= pro.name %></a></td>
+                                            <td><%= pro.code %></td>
+                                            <td><%= pro.import_price %></td>
+                                            <td><%= pro.import_qty %></td>
+                                            <td><%= pro.stock_qty %></td>
+                                            <th class="float-right"><a class="btn btn-sm btn-danger"
+                                                    href="/cut-product/<%= pro._id %>"> >> <i class="fas fa-cut"></i> << </a></td>
+                                        </tr>
+                                        <% } %>
+                                        <% n++; }) %>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- /.container-fluid -->
+
+            </div>
+            <!-- End of Main Content -->
+
+            <%- include("../layouts/copyright") %>
+
+
+        </div>
+        <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <%- include("../layouts/buttom") %>
+
+    <%- include("../layouts/footer") %>
+
+</body>
+
+</html>

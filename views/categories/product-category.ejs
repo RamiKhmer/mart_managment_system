@@ -1,0 +1,105 @@
+<%- include("../layouts/header") %>
+
+<body id="page-top">
+
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+
+        <%- include("../layouts/sidebar") %>
+
+
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+
+                <%- include("../layouts/navbar") %>
+
+                <div class="container-fluid">
+                    <h1 class="font-weight-bold text-primary">បញ្ចូល ប្រភេទ មុខទំនេញ</h1>
+                    <br>
+                    <form action="/add-category" method="POST">
+                        <!-- Area Chart -->
+                        <div class="row">
+                            <div class="col-xl-8 col-lg-5">
+                                <div class="card shadow mb-4">
+                                    <!-- Card Body -->
+                                    <div class="card-body">
+
+                                        <div class="form-group">
+                                            <label for="" class="font-weight-bold text-primary">Product Type</label>
+                                            <input type="text" class="form-control" id="" name="name"
+                                                placeholder="Product Category">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="" class="font-weight-bold text-primary">Description</label>
+                                            <textarea class="form-control" name="desc" id="" cols="30" rows="5" placeholder="Product Description"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-4 col-lg-5">
+                                <button class="btn btn-lg btn-success"> <i class="fas fa-arrow-down"></i> Save </button>
+                            </div>
+                        </div>
+
+                    </form>
+
+
+                    <!-- ============== Table             -->
+
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">List Product Categories</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th>No</th>
+                                            <th>Type</th>
+                                            <th>Description</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <% let n = 1 %> 
+                                        <% categories.forEach(cats => { %>
+                                         <tr>
+                                            <td class="text-center"><%= n %></td>
+                                            <td><%= cats.name %></td>
+                                            <td><%= cats.desc %></td>
+                                            <th class="float-right"><a class="btn btn-sm btn-success" href="/edit-category/<%= cats._id %>"><i class="fas fa-edit"></i></a> <a class="btn btn-sm btn-danger" href=""><i class="fas fa-trash-alt"></i></a></td>
+                                        </tr>
+                                        
+                                        <% n++; }) %>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+             
+                <!-- /.container-fluid -->
+
+            </div>
+            <!-- End of Main Content -->
+
+            <%- include("../layouts/copyright") %>
+
+
+        </div>
+        <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <%- include("../layouts/buttom") %>
+
+    <%- include("../layouts/footer") %>
+
+</body>
+
+</html>

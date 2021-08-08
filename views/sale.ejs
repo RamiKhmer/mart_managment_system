@@ -1,0 +1,237 @@
+<%- include("layouts/header") %>
+
+<body id="page-top">
+    <!-- oncontextmenu="return false" -->
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+
+        <%- include("layouts/sidebar") %>
+
+
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+
+                <%- include("layouts/navbar") %>
+
+                <div class="container-fluid">
+                    <h1 class="font-weight-bold text-primary">ការលក់</h1>
+                    <br>
+                    <!-- Area Chart -->
+                    <div class="row">
+                        <div class="col-xl-6 col-lg-5">
+                            <div class="card shadow mb-4">
+                                <!-- Card Body -->
+                                <div class="card-body">
+                                    <h3>Get Product By Scan code</h3>
+                                    <form action="/buy-product-code" method="POST">
+                                        <div class="row">
+                                            <div class="col-xl-6 col-lg-5">
+                                                <div class="form-group">
+                                                    <label for="" class="font-weight-bold text-primary">Product
+                                                        Code</label>
+                                                    <input type="text" class="form-control" id="" name="code"
+                                                        placeholder="Product Code" required>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-2 col-lg-5">
+                                                <div class="form-group">
+                                                    <label for="" class="font-weight-bold text-primary">
+                                                        Quantity</label>
+                                                    <input type="number" class="form-control" id="" name="qty"
+                                                        placeholder="Product Quantity" value=1 required>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="col-xl-4 col-lg-5">
+                                            <button class="btn btn-lg btn-success"> <i class="fas fa-plus"></i>
+                                                Add to list </button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-lg-7">
+                            <div class="card shadow mb-4">
+
+                                <!-- Card Body -->
+                                <div class="card-body">
+                                    <h3>Get Product Manual Selection</h3>
+                                    <form action="/buy-product-manaul" method="POST">
+
+                                        <div class="form-group">
+                                            <label for="" class="font-weight-bold text-primary">Product Type</label>
+                                            <input type="text" class="form-control" id="" name="name"
+                                                placeholder="Product Category">
+                                        </div>
+
+                                        <div class="col-xl-4 col-lg-5">
+                                            <button class="btn btn-lg btn-success"> <i class="fas fa-arrow-down"></i>
+                                                Add to list </button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ============== Table             -->
+                    <div class="row">
+                        <div class="col-xl-8 col-lg-5">
+                            <div class="card shadow mb-4">
+                                <div class="card-header py-3">
+                                    <h6 class="m-0 font-weight-bold text-primary">Invoice List Items</h6>
+                                </div>
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                            <thead>
+                                                <tr>
+                                                    <th>No</th>
+                                                    <th>Name</th>
+                                                    <th>code</th>
+                                                    <th>Price</th>
+                                                    <th>QTY</th>
+                                                    <th>Amount</th>
+                                                    <th></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <% let n = 1 %>
+                                                <% products.forEach((p,i) => { %>
+                                                <tr>
+                                                    <td><%= n %></td>
+                                                    <td><%= p.name %></td>
+                                                    <td><%= p.code %></td>
+                                                    <td><%= p.price %></td>
+                                                    <td><%= p.qty %></td>
+                                                    <td><%= p.amount %></td>
+                                                    <td class="float-right">
+                                                        <div class="row">
+                                                            <div class="col-xl-4 col-lg-5 ">
+                                                                <form action="/minus-array-product/<%= i %>"
+                                                                    method="POST">
+                                                                    <button class="btn btn-sm btn-danger"><i
+                                                                            class="fas fa-minus"></i></button>
+                                                                </form>
+                                                            </div>
+                                                            <div class="col-xl-4 col-lg-5">
+                                                                <form action="/plus-array-product/<%= i %>"
+                                                                    method="POST">
+                                                                    <button class="btn btn-sm btn-success"><i
+                                                                            class="fas fa-plus"></i></button>
+                                                                </form>
+                                                            </div>
+                                                            <div class="col-xl-4 col-lg-5">
+                                                                <form action="/delete-array-product/<%= i %>"
+                                                                    method="POST">
+                                                                    <button class="btn btn-sm btn-danger"><i
+                                                                            class="fas fa-trash-alt"></i></button>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+
+
+
+
+                                                    </td>
+                                                </tr>
+                                                <% n++; %>
+                                                <% }) %>
+
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- totaL -->
+
+                        <div class="col-xl-4 col-lg-5">
+                            <div class="card shadow mb-4">
+                                <div class="card-header py-3">
+                                    <h6 class="m-0 font-weight-bold text-primary">Invoice</h6>
+                                </div>
+                                <div class="card-body">
+                                    <form action="/check-out" method="POST">
+                                        <div class="row">
+                                            <div class="col-xl-6 col-lg-5">
+                                                <div class="form-group">
+                                                    <label for="" class="font-weight-bold text-primary">Total Amount
+                                                    </label>
+                                                    <input type="number" class="form-control" id="total_amount"
+                                                        name="total_amount" placeholder="Product Code"
+                                                        value="<%= tamount %>" readonly>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-6 col-lg-5">
+                                                <div class="form-group">
+                                                    <label for="" class="font-weight-bold text-primary">Return Amount
+                                                    </label>
+                                                    <input type="number" class="form-control" id="return_amount"
+                                                        name="return_amount" placeholder="Return" value="" readonly>
+                                                </div>
+                                            </div>
+                        
+                                            <!-- get dolla -->
+                                            <div class="col-xl-6 col-lg-5">
+                                                <div class="form-group">
+                                                    <label for="" class="font-weight-bold text-success">
+                                                        Paid Amount ($) </label>
+                                                    <input type="number" class="form-control" id="paid_amount"
+                                                        name="paid_amount" placeholder="Get Money"  required>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="col-xl-4 col-lg-5">
+                                            <button class="btn btn-lg btn-primary"><i class="fas fa-credit-card"></i>
+                                                Payment </button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <script>
+                        document.getElementById("paid_amount"), addEventListener("input", function () {
+
+                            let totalA = document.getElementById("total_amount").value;
+                            let piadA = document.getElementById("paid_amount").value;
+
+                            returnA = piadA - totalA;
+                            document.getElementById("return_amount").value = returnA;
+
+                            // console.log(document.getElementById("paid_amount").value);
+                        });
+                    </script>
+
+                    <!-- /.container-fluid -->
+
+                </div>
+                <!-- End of Main Content -->
+
+                <%- include("layouts/copyright") %>
+
+
+            </div>
+            <!-- End of Content Wrapper -->
+
+        </div>
+        <!-- End of Page Wrapper -->
+
+        <%- include("layouts/buttom") %>
+
+        <%- include("layouts/footer") %>
+
+</body>
+
+</html>

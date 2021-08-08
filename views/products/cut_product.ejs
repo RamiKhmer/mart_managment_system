@@ -1,0 +1,88 @@
+<%- include("../layouts/header") %>
+
+<body id="page-top">
+
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+
+        <%- include("../layouts/sidebar") %>
+
+
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+
+                <%- include("../layouts/navbar") %>
+
+                <div class="container-fluid">
+                    <h1>កាត់ស្តុក មុខទំនេញ</h1>
+                    <br>
+                    <a href="/product-stockcut" class="btn btn-sm btn-primary"> <i class="fas fa-arrow-left"></i> Back
+                        to
+                        Products stock</a>
+                    <br><br>
+
+                    <div class="card bg-info text-white shadow">
+                        <div class="card-body">
+                            <h1 class="text-center"><%= pro.name %></h1>
+                        </div>
+                    </div><br>
+                    <div class="row">
+                        <div class="col-xl-6 col-lg-5">
+                            <form action="/cut-product/<%= pro._id %>" method="POST">
+                                <!-- Area Chart -->
+                                <div class="card shadow mb-4">
+                                    <!-- Card Body -->
+                                    <div class="card-body">
+
+                                        <div class="form-group">
+                                            <label for="">Enter cutting out amount</label>
+                                            <input name="cutNum" type="number" class="form-control" id=""
+                                                placeholder="Enter your number of cutting ot from stock">
+                                        </div>
+                                    </div>
+                                </div>
+                                <button class="btn btn-lg btn-info"> submit </button>
+                            </form>
+                        </div>
+                        <div class="col-xl-6 col-lg-7">
+                            <div class="card border-left-info shadow h-90 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                               Your current product quantity available</div>
+                                            <div class="h1 mb-0 font-weight-bold text-gray-800"> <%= pro.stock_qty %> </div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.container-fluid -->
+
+            </div>
+            <!-- End of Main Content -->
+
+            <%- include("../layouts/copyright") %>
+
+
+        </div>
+        <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <%- include("../layouts/buttom") %>
+
+    <%- include("../layouts/footer") %>
+
+</body>
+
+</html>

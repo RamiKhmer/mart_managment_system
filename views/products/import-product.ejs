@@ -1,0 +1,116 @@
+<%- include("../layouts/header") %>
+
+<body id="page-top">
+
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+
+        <%- include("../layouts/sidebar") %>
+
+
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+
+                <%- include("../layouts/navbar") %>
+
+                <div class="container-fluid">
+                    <h1>បញ្ចូល មុខទំនេញ</h1>
+                    <br>
+                    <a href="/products" class="btn btn-sm btn-primary"> <i class="fas fa-arrow-left"></i> Back to All Products</a>
+                    <br><br>
+                    
+                    <form action="/import-product" method="POST">
+
+                        <div class="row">
+                            <!-- Area Chart -->
+                            <div class="col-xl-6 col-lg-5">
+                                <div class="card shadow mb-4">
+                                    <!-- Card Body -->
+                                    <div class="card-body">
+                                        <div class="form-group">
+                                            <label for="exampleFormControlSelect1">Category</label>
+                                            <select class="form-control" id="exampleFormControlSelect1" name="category_id">
+                                                <% cats.forEach(cat => { %>
+                                                 <option value="<%= cat._id %>"><%= cat.name %></option>
+                                                <% }) %>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="">Code</label>
+                                            <input name="code" type="text" class="form-control" id=""
+                                                placeholder="Product code">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="">Name</label>
+                                            <input name="name" type="text" class="form-control" id=""
+                                                placeholder="Product Name">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="">Supplier</label>
+                                            <input name="supplier" type="text" class="form-control" id=""
+                                                placeholder="your supplier">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="">Product Import Price</label>
+                                            <input name="import_price" type="Number" class="form-control" id=""
+                                                placeholder="The original price from supplier ">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="">Porduct Import Quantity</label>
+                                            <input name="import_qty" type="Number" class="form-control" id=""
+                                                placeholder="Product quatity ">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Area Chart -->
+                            <div class="col-xl-6 col-lg-7">
+                                <div class="card shadow mb-4">
+                                    <!-- Card Body -->
+                                    <div class="card-body">
+
+                                        <div class="form-group">
+                                            <label for="">Sale Price</label>
+                                            <input name="sale_price" type="Number" class="form-control" id=""
+                                                placeholder="Product price for sale ">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="">Description</label>
+                                            <textarea name="desc" class="form-control" id="" rows="5"></textarea>
+                                        </div>
+
+                                        <button class="btn btn-lg btn-success">Insert Product</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+
+                    </form>
+
+                </div>
+                <!-- /.container-fluid -->
+
+            </div>
+            <!-- End of Main Content -->
+
+            <%- include("../layouts/copyright") %>
+
+
+        </div>
+        <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <%- include("../layouts/buttom") %>
+
+    <%- include("../layouts/footer") %>
+
+</body>
+
+</html>
